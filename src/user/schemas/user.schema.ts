@@ -13,14 +13,32 @@ export class User {
  
   lname: string;
 
-  @Prop({required: true, unique: true})
+  @Prop({unique: true, sparse: true})
   email: string;
+
+  @Prop({unique: true, sparse: true})
+  mobileNumber: string
 
   @Prop({required: true})
   password: string;
 
   @Prop({default: Role.Player})
   role:string;
+
+  @Prop({default: false})
+  isEmailVerified: boolean;
+
+    @Prop({default: false})
+  isMobileVerified: boolean;
+
+  @Prop()
+  emailVerificationOtp: string;
+
+    @Prop()
+  mobileVerificationOtp: string;
+
+  @Prop()
+  otpExpiresAt: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
